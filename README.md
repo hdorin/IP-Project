@@ -2,7 +2,7 @@
 
 Project: Software evolution (English Group)
 
-Componenta echipei:
+Team composition:
 Sîrghe Matei (Scrum Master)
 Haloca Dorin (M1)
 Tiron Adrian (M1)
