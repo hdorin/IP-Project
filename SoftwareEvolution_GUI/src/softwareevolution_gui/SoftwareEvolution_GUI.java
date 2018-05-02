@@ -53,6 +53,7 @@ public class SoftwareEvolution_GUI {
             /*aici e cand apesi butonul*/
             searchButton.addActionListener (new ActionListener() {
             	public void actionPerformed(ActionEvent e) {
+
             		tags = description();
             		//taoolb.getStores()[1].id;
             		System.out.println("Tags:");
@@ -69,6 +70,12 @@ public class SoftwareEvolution_GUI {
             		}
             		for(int i=0;i<selectedLangs.size();i++) {
             			System.out.println(selectedLangs.get(i));
+
+            		ArrayList<String> test = description();
+            		for(int i=0;i<test.size();i++)
+            		{
+            			System.out.println(test.get(i));
+
             		}
             	}
             });
