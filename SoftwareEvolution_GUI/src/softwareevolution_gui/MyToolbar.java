@@ -19,8 +19,18 @@ public class MyToolbar extends JSplitPane implements ActionListener {
     private final SoftwareEvolution_GUI frame;
     boolean sap = false;
     JComboBox combo;
+    CheckComboStore[] stores;
 
-    private JTextArea ta;
+    public CheckComboStore[] getStores() {
+		return stores;
+	}
+
+
+	public void setStores(CheckComboStore[] stores) {
+		this.stores = stores;
+	}
+
+	private JTextArea ta;
 
     public SoftwareEvolution_GUI getFrame() {
         return frame;
@@ -91,7 +101,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
                 = {
                     Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE
                 };
-        CheckComboStore[] stores = new CheckComboStore[langs.length];
+        stores = new CheckComboStore[langs.length];
         for (int j = 0; j < langs.length; j++) {
             stores[j] = new CheckComboStore(langs[j], values[j]);
         }
