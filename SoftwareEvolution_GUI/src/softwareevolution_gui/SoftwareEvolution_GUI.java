@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.border.EmptyBorder;
@@ -20,10 +21,15 @@ public class SoftwareEvolution_GUI {
     
     private MyToolbar toolb;
 
-    public String[] description()
+    public ArrayList<String> description()
     {
+    	ArrayList<String> tags = new ArrayList<String>();
     	String desc = toolb.getTa().getText();
-    	String tags[] = desc.split(" ");
+    	String words[] = desc.split(" ");
+    	for(int i=0;i<words.length;i++)
+    	{
+    		tags.add(words[i]);
+    	}
     	return tags;
     	
     }
@@ -44,10 +50,10 @@ public class SoftwareEvolution_GUI {
             JButton searchButton = new JButton("Search");
             searchButton.addActionListener (new ActionListener() {
             	public void actionPerformed(ActionEvent e) {
-            		String test[] = description();
-            		for(int i=0;i<test.length;i++)
+            		ArrayList<String> test = description();
+            		for(int i=0;i<test.size();i++)
             		{
-            			System.out.println(test[i]);
+            			System.out.println(test.get(i));
             		}
             	}
             });
