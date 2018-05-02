@@ -25,7 +25,8 @@ public class MyToolbar extends JSplitPane implements ActionListener {
     public SoftwareEvolution_GUI getFrame() {
         return frame;
     }
-
+    
+    
     public JTextArea getTa() {
         return ta;
     }
@@ -65,7 +66,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         {
             @Override
             public void focusLost(FocusEvent e){
-                ta.setText("Input description here...");
+                //ta.setText("Input description here...");
             }
 
         });

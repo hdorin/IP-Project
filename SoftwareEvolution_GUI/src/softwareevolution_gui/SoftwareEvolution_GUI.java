@@ -6,6 +6,9 @@
 package softwareevolution_gui;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.border.EmptyBorder;
 
@@ -17,6 +20,13 @@ public class SoftwareEvolution_GUI {
     
     private MyToolbar toolb;
 
+    public String[] description()
+    {
+    	String desc = toolb.getTa().getText();
+    	String tags[] = desc.split(" ");
+    	return tags;
+    	
+    }
 
     public MyToolbar getToolb() {
         return toolb;
@@ -31,9 +41,20 @@ public class SoftwareEvolution_GUI {
             toolb = new MyToolbar(this);
             toolb.setBorder(new EmptyBorder(10, 10, 10, 10));
             
+            JButton searchButton = new JButton("Search");
+            searchButton.addActionListener (new ActionListener() {
+            	public void actionPerformed(ActionEvent e) {
+            		String test[] = description();
+            		for(int i=0;i<test.length;i++)
+            		{
+            			System.out.println(test[i]);
+            		}
+            	}
+            });
+            
             frame.add(toolb, BorderLayout.PAGE_START);
             frame.add(Box.createRigidArea(new Dimension(0, 20)));
-            frame.add(new JButton("Search"), BorderLayout.PAGE_END);
+            frame.add(searchButton, BorderLayout.PAGE_END);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(800, 800);
             frame.pack();
@@ -44,7 +65,7 @@ public class SoftwareEvolution_GUI {
         
     }
     
-    public static void main(String... args){
+    public static void main(String args[]){
         new SoftwareEvolution_GUI();
     }
 }
