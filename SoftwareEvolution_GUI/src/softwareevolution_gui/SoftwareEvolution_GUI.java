@@ -20,8 +20,8 @@ import javax.swing.border.EmptyBorder;
 public class SoftwareEvolution_GUI {
     
     private MyToolbar toolb;
-    private ArrayList<String> selectedLangs=new ArrayList<String>();
-    ArrayList<String> tags;
+    private ArrayList<String> selectedLangs;
+    private ArrayList<String> tags;
 
     public ArrayList<String> description()
     {
@@ -49,7 +49,7 @@ public class SoftwareEvolution_GUI {
             toolb = new MyToolbar(this);
             toolb.setBorder(new EmptyBorder(10, 10, 10, 10));
             
-            JButton searchButton = new JButton("Search");
+            JButton searchButton = new SearchButton(this);
             /*aici e cand apesi butonul*/
             searchButton.addActionListener (new ActionListener() {
             	public void actionPerformed(ActionEvent e) {
@@ -60,10 +60,15 @@ public class SoftwareEvolution_GUI {
             		{
             			System.out.println(tags.get(i));
             		}
+            		selectedLangs=new ArrayList<String>();
             		System.out.println("Languages:");
             		for(int i=0;i<toolb.getStores().length;i++) {
-            			System.out.println(toolb.getStores()[i].id);
-            			System.out.println(toolb.getStores()[i].state);
+            			if(toolb.getStores()[i].state==true) {
+            				selectedLangs.add(toolb.getStores()[i].id);
+            			}
+            		}
+            		for(int i=0;i<selectedLangs.size();i++) {
+            			System.out.println(selectedLangs.get(i));
             		}
             	}
             });
