@@ -19,8 +19,18 @@ public class MyToolbar extends JSplitPane implements ActionListener {
     private final SoftwareEvolution_GUI frame;
     boolean sap = false;
     JComboBox combo;
+    CheckComboStore[] stores;
 
-    private JTextArea ta;
+    public CheckComboStore[] getStores() {
+		return stores;
+	}
+
+
+	public void setStores(CheckComboStore[] stores) {
+		this.stores = stores;
+	}
+
+	private JTextArea ta;
 
     public SoftwareEvolution_GUI getFrame() {
         return frame;
@@ -50,16 +60,18 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         form.add(Box.createRigidArea(new Dimension(0, 10)));
         
         JLabel l1 = new JLabel("Description of the project");
+        l1.setFont(l1.getFont().deriveFont(20f));  // Label font
         form.add(l1);
         form.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        ta = new JTextArea("Input description here...", 6, 8);
+        ta = new JTextArea("Input description here...", 20, 20);
         ta.setLineWrap(true);
+        ta.setFont(ta.getFont().deriveFont(20f));    // Description font
 
         ta.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ta.setText("");
+                ta.setText("");   // Mouse event
             }
         });
         ta.addFocusListener(new FocusAdapter()
@@ -91,7 +103,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
                 = {
                     Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE
                 };
-        CheckComboStore[] stores = new CheckComboStore[langs.length];
+        stores = new CheckComboStore[langs.length];
         for (int j = 0; j < langs.length; j++) {
             stores[j] = new CheckComboStore(langs[j], values[j]);
         }
