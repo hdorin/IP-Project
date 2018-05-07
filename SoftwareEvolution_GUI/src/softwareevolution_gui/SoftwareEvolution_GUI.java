@@ -68,15 +68,10 @@ public class SoftwareEvolution_GUI {
             				selectedLangs.add(toolb.getStores()[i].id);
             			}
             		}
-            		int i;
-            		for(i=0;i<selectedLangs.size();i++) {
-            			System.out.println(selectedLangs.get(i));
-            		}
 
-            		ArrayList<String> test = description();
-            		for(i=0;i<test.size();i++)
+            		for(int i=0;i<selectedLangs.size();i++)
             		{
-            			System.out.println(test.get(i));
+            			System.out.println(selectedLangs.get(i));
 
             		}
             	}
