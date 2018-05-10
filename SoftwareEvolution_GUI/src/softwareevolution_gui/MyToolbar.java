@@ -8,7 +8,10 @@ package softwareevolution_gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -49,7 +52,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setResizeWeight(.5d);
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.LIGHT_GRAY);
         JPanel form = new JPanel();
         
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
@@ -57,9 +60,9 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         form.setBorder(BorderFactory.createTitledBorder("Search form"));
         form.setBorder(new EmptyBorder(20, 20, 20, 20));
         form.add(Box.createRigidArea(new Dimension(0, 10)));
-        form.setBackground(Color.BLACK);
+        form.setBackground(Color.LIGHT_GRAY);
         JLabel l1 = new JLabel("Description of the project");
-        l1.setForeground(Color.WHITE);
+        l1.setForeground(Color.black);
         l1.setFont(l1.getFont().deriveFont(20f));  // Label font
         form.add(l1);
         form.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -102,7 +105,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         language.setLayout((new BoxLayout(language, BoxLayout.Y_AXIS)));
 
         language.add(Box.createRigidArea(new Dimension(50, 50)));
-        language.setBackground(Color.GRAY);
+        language.setBackground(Color.LIGHT_GRAY);
         
         String[] langs = {"Java", "JavaScript", "Python", "C++", "C", "HTML", "CSS", "PHP", "C#", "Ruby"};
         Boolean[] values
@@ -122,7 +125,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
         panel.add(combo);
-        panel.setBackground(Color.GRAY);
+        panel.setBackground(Color.LIGHT_GRAY);
         language.add(panel);
 
         setRightComponent(language);
