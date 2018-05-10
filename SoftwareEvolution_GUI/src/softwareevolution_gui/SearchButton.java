@@ -1,9 +1,11 @@
 package softwareevolution_gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.border.EmptyBorder;
 
 public class SearchButton extends JButton{
 
@@ -25,6 +27,10 @@ public class SearchButton extends JButton{
 	public void init(){
         //this = new JButton("Search");
 		this.setText("Search");
+		this.setBackground(Color.LIGHT_GRAY);
+		this.setForeground(Color.RED);
+		
+		
         this.setPreferredSize(new Dimension(80, 80));
         this.setFont(this.getFont().deriveFont(15f));
 	}

@@ -22,6 +22,7 @@ class CheckComboRenderer implements ListCellRenderer {
     public CheckComboRenderer(String title, MyToolbar mt) {
         this.checkBox = new JCheckBox();
         this.label = new JLabel();
+        
         this.mt = mt;
         this.title = title;
     }

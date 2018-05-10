@@ -20,7 +20,6 @@ public class MyToolbar extends JSplitPane implements ActionListener {
     boolean sap = false;
     JComboBox combo;
     CheckComboStore[] stores;
-
     public CheckComboStore[] getStores() {
 		return stores;
 	}
@@ -50,7 +49,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
 
         setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         setResizeWeight(.5d);
-
+        this.setBackground(Color.BLACK);
         JPanel form = new JPanel();
         
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
@@ -58,33 +57,39 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         form.setBorder(BorderFactory.createTitledBorder("Search form"));
         form.setBorder(new EmptyBorder(20, 20, 20, 20));
         form.add(Box.createRigidArea(new Dimension(0, 10)));
-        
+        form.setBackground(Color.BLACK);
         JLabel l1 = new JLabel("Description of the project");
+        l1.setForeground(Color.WHITE);
         l1.setFont(l1.getFont().deriveFont(20f));  // Label font
         form.add(l1);
         form.add(Box.createRigidArea(new Dimension(0, 10)));
-
-        ta = new JTextArea("", 20, 20);//"Input description here..."
+        String default_text = "Input description here...";
+        ta = new JTextArea(default_text, 20, 20);//"Input description here..."
         ta.setLineWrap(true);
         ta.setFont(ta.getFont().deriveFont(20f));    // Description font
 
         ta.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //ta.setText("");   // Mouse event
+            	System.out.println(ta.getText());
+            	if(ta.getText().compareTo(default_text)==0) {
+                	
+            		ta.setText("");   // Mouse event
+                }
             }
         });
         ta.addFocusListener(new FocusAdapter()
         {
             @Override
             public void focusLost(FocusEvent e){
-                //ta.setText("Input description here...");
+                if(ta.getText().compareTo("")==0)
+            	ta.setText("Input description here...");
             }
 
         });
 
         form.add(new JScrollPane(ta));
-
+        
         form.add(Box.createRigidArea(new Dimension(0, 12)));
 
         setLeftComponent(form);
@@ -93,11 +98,12 @@ public class MyToolbar extends JSplitPane implements ActionListener {
          * *****************************************
          */
         JPanel language = new JPanel();
-
+        
         language.setLayout((new BoxLayout(language, BoxLayout.Y_AXIS)));
 
         language.add(Box.createRigidArea(new Dimension(50, 50)));
-
+        language.setBackground(Color.GRAY);
+        
         String[] langs = {"Java", "JavaScript", "Python", "C++", "C", "HTML", "CSS", "PHP", "C#", "Ruby"};
         Boolean[] values
                 = {
@@ -108,15 +114,15 @@ public class MyToolbar extends JSplitPane implements ActionListener {
             stores[j] = new CheckComboStore(langs[j], values[j]);
         }
         combo = new JComboBox(stores);
+        
         combo.setSelectedIndex(-1);
-
         combo.setRenderer(new CheckComboRenderer("LANGUAGES", this));
         combo.addActionListener(this);
         combo.setAlignmentX(CENTER_ALIGNMENT);
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
         panel.add(combo);
-
+        panel.setBackground(Color.GRAY);
         language.add(panel);
 
         setRightComponent(language);
