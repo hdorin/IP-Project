@@ -27,7 +27,11 @@ public class SoftwareEvolution_GUI {
     {
     	ArrayList<String> tags = new ArrayList<String>();
     	String desc = toolb.getTa().getText();
-    	String words[] = desc.split(" ");
+    	if(desc.trim().equals(""))
+    	{
+    		return null;
+    	}
+    	String words[] = desc.trim().split("\\s+");
     	for(int i=0;i<words.length;i++)
     	{
     		tags.add(words[i]);
@@ -52,27 +56,48 @@ public class SoftwareEvolution_GUI {
             JButton searchButton = new SearchButton(this);
             /*aici e cand apesi butonul*/
             searchButton.addActionListener (new ActionListener() {
-            	public void actionPerformed(ActionEvent e) {
+            	public void actionPerformed(ActionEvent e) throws NullPointerException{
 
             		tags = description();
-            		//taoolb.getStores()[1].id;
-            		System.out.println("Tags:");
-            		for(int i=0;i<tags.size();i++)
-            		{
-            			System.out.println(tags.get(i));
-            		}
+            		//System.out.println(tags.get(0));
             		selectedLangs=new ArrayList<String>();
-            		System.out.println("Languages:");
             		for(int i=0;i<toolb.getStores().length;i++) {
             			if(toolb.getStores()[i].state==true) {
             				selectedLangs.add(toolb.getStores()[i].id);
             			}
             		}
-
-            		for(int i=0;i<selectedLangs.size();i++)
+            		try
             		{
-            			System.out.println(selectedLangs.get(i));
+            			if(!tags.isEmpty() && !selectedLangs.isEmpty())
+            			{
+            				//TO DO: Integrare in acest if
+            				System.out.println("Tags:");
+                			for(int i=0;i<tags.size();i++)
+                			{
+                				System.out.println(tags.get(i));
+                			}
+                			System.out.println("Languages:");
+                			for(int i=0;i<selectedLangs.size();i++)
+                			{
+                				System.out.println(selectedLangs.get(i));
 
+                			}
+            			}
+            			else
+            			{
+            				JOptionPane.showMessageDialog(frame, "Please select at least 1 (one) language.");
+            			}
+            		}
+            		catch(NullPointerException x)
+            		{
+            			if(selectedLangs.isEmpty())
+            			{
+            				JOptionPane.showMessageDialog(frame, "Please select at least 1 (one) language and input a description.");
+            			}
+            			else
+            			{
+            				JOptionPane.showMessageDialog(frame, "Please input a description.");
+            			}
             		}
             	}
             });
