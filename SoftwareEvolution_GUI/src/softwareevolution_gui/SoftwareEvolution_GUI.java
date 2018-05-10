@@ -20,18 +20,18 @@ import javax.swing.border.EmptyBorder;
 public class SoftwareEvolution_GUI {
     
     private MyToolbar toolb;
-    private ArrayList<String> selectedLangs=new ArrayList<String>();
-    private ArrayList<String> tags=new ArrayList<String>();
+    private ArrayList<String> selectedLangs;
+    private ArrayList<String> tags;
 
     public ArrayList<String> description()
     {
-
     	ArrayList<String> tags = new ArrayList<String>();
-    	if(toolb.getTa().getText().compareTo("Input description here...")==0) {
-    		return tags;
-    	}
     	String desc = toolb.getTa().getText();
-    	String words[] = desc.split(" ");
+    	if(toolb.getTa().getText().compareTo("Input description here...")==0)
+    	{
+    		return null;
+    	}
+    	String words[] = desc.trim().split("\\s+");
     	for(int i=0;i<words.length;i++)
     	{
     		tags.add(words[i]);
@@ -50,38 +50,54 @@ public class SoftwareEvolution_GUI {
         EventQueue.invokeLater(() -> {
             JFrame frame = new JFrame("Software Evolution");
             
-            
             toolb = new MyToolbar(this);
-            //toolb.setBorder(new EmptyBorder(10, 10, 10, 10));
+            toolb.setBorder(new EmptyBorder(10, 10, 10, 10));
+            
             JButton searchButton = new SearchButton(this);
             /*aici e cand apesi butonul*/
             searchButton.addActionListener (new ActionListener() {
-            	public void actionPerformed(ActionEvent e) {
-            		
+            	public void actionPerformed(ActionEvent e) throws NullPointerException{
+
             		tags = description();
-            		selectedLangs.clear();
-            		//taoolb.getStores()[1].id;
-   
-            		
-            		
+            		//System.out.println(tags.get(0));
+            		selectedLangs=new ArrayList<String>();
             		for(int i=0;i<toolb.getStores().length;i++) {
             			if(toolb.getStores()[i].state==true) {
             				selectedLangs.add(toolb.getStores()[i].id);
             			}
             		}
+            		try
+            		{
+            			if(!tags.isEmpty() && !selectedLangs.isEmpty())
+            			{
+            				//TO DO: Integrare in acest if
+            				System.out.println("Tags:");
+                			for(int i=0;i<tags.size();i++)
+                			{
+                				System.out.println(tags.get(i));
+                			}
+                			System.out.println("Languages:");
+                			for(int i=0;i<selectedLangs.size();i++)
+                			{
+                				System.out.println(selectedLangs.get(i));
 
-            		if(selectedLangs.size() > 0 && tags.size() > 0){
-                 		System.out.println("\nTags:");
-                		for(int i=0;i<tags.size();i++)
-                		{
-                			System.out.println(tags.get(i));
-                		}
-            			System.out.println("Languages:");
-                		for(int i=0;i<selectedLangs.size();i++)
-                		{
-                			System.out.println(selectedLangs.get(i));
-
-                		}
+                			}
+            			}
+            			else
+            			{
+            				JOptionPane.showMessageDialog(frame, "Please select at least 1 (one) language.");
+            			}
+            		}
+            		catch(NullPointerException x)
+            		{
+            			if(selectedLangs.isEmpty())
+            			{
+            				JOptionPane.showMessageDialog(frame, "Please select at least 1 (one) language and input a description.");
+            			}
+            			else
+            			{
+            				JOptionPane.showMessageDialog(frame, "Please input a description.");
+            			}
             		}
             	}
             });
@@ -93,9 +109,7 @@ public class SoftwareEvolution_GUI {
             frame.setSize(800, 800);
             frame.pack();
             frame.setLocationRelativeTo(null);
-            
             frame.setVisible(true);
-            
             //frame.validate();
         });
         
@@ -105,4 +119,3 @@ public class SoftwareEvolution_GUI {
         new SoftwareEvolution_GUI();
     }
 }
-
