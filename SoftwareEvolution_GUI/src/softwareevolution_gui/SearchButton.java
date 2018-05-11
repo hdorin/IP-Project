@@ -25,7 +25,7 @@ public class SearchButton extends JButton{
 	
 	public void init(){
 		this.setText("Search");
-		this.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(Color.GRAY);
 		this.setForeground(Color.BLACK);	
         this.setPreferredSize(new Dimension(80, 80));
         this.setFont(this.getFont().deriveFont(15f));

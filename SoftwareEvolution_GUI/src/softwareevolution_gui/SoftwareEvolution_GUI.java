@@ -101,10 +101,17 @@ public class SoftwareEvolution_GUI {
             		}
             	}
             });
+            ImageIcon image;
+            image=new ImageIcon("title.jpg");
+            JLabel label_img=new JLabel();
+            label_img.setIcon(image);
             
-            frame.add(toolb, BorderLayout.PAGE_START);
+            
+            
+            frame.add(label_img,BorderLayout.NORTH);
+            frame.add(toolb, BorderLayout.WEST);
             frame.add(Box.createRigidArea(new Dimension(0, 20)));
-            frame.add(searchButton, BorderLayout.PAGE_END);
+            frame.add(searchButton, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(800, 800);
             frame.pack();

@@ -67,7 +67,7 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         form.add(l1);
         form.add(Box.createRigidArea(new Dimension(0, 10)));
         String default_text = "Input description here...";
-        ta = new JTextArea(default_text, 20, 20);//"Input description here..."
+        ta = new JTextArea(default_text, 10, 20);//"Input description here..."
         ta.setLineWrap(true);
         ta.setFont(ta.getFont().deriveFont(20f));    // Description font
 
