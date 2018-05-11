@@ -69,8 +69,8 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         String default_text = "Input description here...";
         ta = new JTextArea(default_text, 10, 20);//"Input description here..."
         ta.setLineWrap(true);
-        ta.setFont(ta.getFont().deriveFont(20f));    // Description font
-
+        //ta.setFont(ta.getFont().deriveFont(20f));    // Description font
+        ta.setFont(new Font("Serif", Font.PLAIN, 22));
         ta.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

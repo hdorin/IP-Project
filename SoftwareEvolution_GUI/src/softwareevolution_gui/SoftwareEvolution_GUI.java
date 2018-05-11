@@ -70,7 +70,7 @@ public class SoftwareEvolution_GUI {
             		{
             			if(!tags.isEmpty() && !selectedLangs.isEmpty())
             			{
-            				//TO DO: Integrare in acest if
+          
             				System.out.println("Tags:");
                 			for(int i=0;i<tags.size();i++)
                 			{
@@ -107,7 +107,7 @@ public class SoftwareEvolution_GUI {
             label_img.setIcon(image);
             
             
-            
+            frame.setResizable(false);
             frame.add(label_img,BorderLayout.NORTH);
             frame.add(toolb, BorderLayout.WEST);
             frame.add(Box.createRigidArea(new Dimension(0, 20)));
