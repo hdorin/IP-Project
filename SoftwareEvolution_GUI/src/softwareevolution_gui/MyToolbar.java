@@ -71,16 +71,17 @@ public class MyToolbar extends JSplitPane implements ActionListener {
         ta.setLineWrap(true);
         //ta.setFont(ta.getFont().deriveFont(20f));    // Description font
         ta.setFont(new Font("Serif", Font.PLAIN, 22));
+        
         ta.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            	System.out.println(ta.getText());
+            	
             	if(ta.getText().compareTo(default_text)==0) {
-                	
             		ta.setText("");   // Mouse event
                 }
             }
         });
+        /*
         ta.addFocusListener(new FocusAdapter()
         {
             @Override
@@ -88,8 +89,8 @@ public class MyToolbar extends JSplitPane implements ActionListener {
                 if(ta.getText().compareTo("")==0)
             	ta.setText("Input description here...");
             }
-
         });
+        */
 
         form.add(new JScrollPane(ta));
         
