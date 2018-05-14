@@ -68,9 +68,14 @@ public class SoftwareEvolution_GUI implements ActionListener {
                     System.out.println(selectedLangs.get(i));
 
                 }
-            } else {
+            } else 
+            	if(selectedLangs.isEmpty()==true){
                 JOptionPane.showMessageDialog(frame, "Please select at least 1 (one) language.");
                 return false;
+            }else {
+                JOptionPane.showMessageDialog(frame, "Please input a description.");
+                return false;
+
             }
         } catch (NullPointerException x) {
             if (selectedLangs.isEmpty()) {
