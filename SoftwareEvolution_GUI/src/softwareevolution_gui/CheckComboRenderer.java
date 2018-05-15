@@ -1,30 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package softwareevolution_gui;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
- * @author tda_m
- */
+
 class CheckComboRenderer implements ListCellRenderer {
-    
-    JCheckBox checkBox;
-    private MyToolbar mt;
-    JLabel label;
-    String title;
+
+    private JCheckBox checkBox;
+    private final MyToolbar mt;
+    private JLabel label;
+    private String title;
+    private CheckComboStore store;
 
     public CheckComboRenderer(String title, MyToolbar mt) {
         this.checkBox = new JCheckBox();
         this.label = new JLabel();
-        
         this.mt = mt;
         this.title = title;
+    }
+
+    public JCheckBox getCheckBox() {
+        return checkBox;
     }
 
     @Override
@@ -33,30 +29,37 @@ class CheckComboRenderer implements ListCellRenderer {
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
-        
-        CheckComboStore store = (CheckComboStore) value;
+
+        store = (CheckComboStore) value;
 
         if (index == -1 && value == null) {
-            if (mt.sap) {
-                    mt.combo.showPopup(); //show it again
-                    mt.sap = false; //and remove the flag
-                }
             
-            label.setText(title);
-
-            label.setBackground(isSelected ? Color.red : Color.white);
-            label.setForeground(isSelected ? Color.white : Color.black);
+            if (mt.isSap()) {
+                mt.getCombo().showPopup(); //show it again
+                mt.setSap(false); //and remove the flag
+            }
+            
+            configLabel(isSelected);
             return label;
-        } else {
-            
-            
-            checkBox.setText(store.id);
-
-            checkBox.setSelected(((Boolean) store.state).booleanValue());
-            checkBox.setBackground(isSelected ? Color.red : Color.white);
-            checkBox.setForeground(isSelected ? Color.white : Color.black);
+        } 
+        else {
+            configCheckbox(isSelected);
             return checkBox;
         }
+    }
 
+    private void configLabel(boolean isSelected) {
+        label.setText(title);
+
+        label.setBackground(isSelected ? Color.red : Color.white);
+        label.setForeground(isSelected ? Color.white : Color.black);
+    }
+
+    private void configCheckbox(boolean isSelected) {
+        checkBox.setText(store.id);
+        checkBox.setSelected((store.state));
+
+        checkBox.setBackground(isSelected ? Color.red : Color.white);
+        checkBox.setForeground(isSelected ? Color.white : Color.black);
     }
 }
