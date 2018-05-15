@@ -6,12 +6,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-
 public class SoftwareEvolution_GUI implements ActionListener {
 
     private MyToolbar toolb = null;
-    private ArrayList<String> selectedLangs;
-    private ArrayList<String> tags;
+    private ArrayList<String> selectedLangs = new ArrayList<>();
+    private ArrayList<String> tags = new ArrayList<>();
     private JFrame frame = null;
     private JLabel label_img = null;
     private JButton searchButton = null;
@@ -44,41 +43,31 @@ public class SoftwareEvolution_GUI implements ActionListener {
         return langs;
     }
 
-    public boolean displayInfo(ArrayList<String> tags, ArrayList<String> selectedLangs) throws NullPointerException {
-        try {
-            if (!tags.isEmpty() && !selectedLangs.isEmpty()) {
+    public boolean displayInfo(ArrayList<String> tags, ArrayList<String> selectedLangs) {
 
-                System.out.println("TAGS:");
-                for (int i = 0; i < tags.size(); i++) {
-                    System.out.println(tags.get(i));
-                }
-                System.out.println("\nLANGUAGES:");
-                for (int i = 0; i < selectedLangs.size(); i++) {
-                    System.out.println(selectedLangs.get(i));
-                }
-                System.out.println();
-                
-            } else {
-                if (selectedLangs.isEmpty() == true) {
-                    JOptionPane.showMessageDialog(frame, "Please select at least 1 (one) language.");
-                    return false;
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Please input a description.");
-                    return false;
-                }
+        if (!tags.isEmpty() && !selectedLangs.isEmpty()) {
+
+            System.out.println("TAGS:");
+            for (int i = 0; i < tags.size(); i++) {
+                System.out.println(tags.get(i));
             }
-        } catch (NullPointerException x) {
-            if (selectedLangs.isEmpty()) {
-                JOptionPane.showMessageDialog(frame,
-                        "Please select at least 1 (one) language and input a description.");
-                return false;
-
-            } else {
-                JOptionPane.showMessageDialog(frame, "Please input a description.");
-                return false;
-
+            System.out.println("\nLANGUAGES:");
+            for (int i = 0; i < selectedLangs.size(); i++) {
+                System.out.println(selectedLangs.get(i));
             }
+            System.out.println();
+        } else if (selectedLangs.isEmpty() && tags.isEmpty()) {
+            JOptionPane.showMessageDialog(frame,
+                    "Please select at least 1 (one) language and input a description.");
+            return false;
+        } else if (selectedLangs.isEmpty() && !tags.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please select at least 1 (one) language.");
+            return false;
+        } else if (!selectedLangs.isEmpty() && tags.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please input a description.");
+            return false;
         }
+
         return true;
     }
 
@@ -110,7 +99,7 @@ public class SoftwareEvolution_GUI implements ActionListener {
             init();
         });
     }
-    
+
     private void init() {
         frame.setResizable(false);
         frame.add(label_img, BorderLayout.NORTH);
