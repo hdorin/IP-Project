@@ -56,7 +56,7 @@ public class SoftwareEvolution_GUI implements ActionListener {
 
     }
 
-    private boolean displayInfo(ArrayList<String> tags, ArrayList<String> selectedLangs) {
+    public boolean displayInfo(ArrayList<String> tags, ArrayList<String> selectedLangs) {
 
         if (!tags.isEmpty() && !selectedLangs.isEmpty()) {
 
