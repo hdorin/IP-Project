@@ -19,31 +19,44 @@ public class SoftwareEvolution_GUI implements ActionListener {
         return toolb;
     }
 
-    public ArrayList<String> description() {
-        ArrayList<String> v_tags = new ArrayList<>();
+    private void assignTags() {
+        
+        tags.clear();
         String desc = toolb.getTa().getText();
-        if (toolb.getTa().getText().compareTo("Input description here...") == 0) {
-            return null;
-        }
-        String words[] = desc.trim().split("\\s+");
-        v_tags.addAll(Arrays.asList(words));
-        return v_tags;
+        if (toolb.getTa().getText().compareTo("Input description here...") != 0) {
 
-    }
+            String delim = " \n\r\t";
+            StringTokenizer st = new StringTokenizer(desc, delim);
 
-    public ArrayList<String> languages() {
-        ArrayList<String> langs = new ArrayList<>();
-
-        for (CheckComboStore store : toolb.getStores()) {
-            if (store.state == true) {
-                langs.add(store.id);
+            while (st.hasMoreTokens()) {
+                tags.add(st.nextToken());
             }
         }
 
-        return langs;
     }
 
-    public boolean displayInfo(ArrayList<String> tags, ArrayList<String> selectedLangs) {
+    private boolean isEmptyStringArray(String[] array) {
+        for (String array1 : array) {
+            if (array1 != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void assignLanguages() {
+        
+        selectedLangs.clear();
+
+        for (CheckComboStore store : toolb.getStores()) {
+            if (store.state == true) {
+                selectedLangs.add(store.id);
+            }
+        }
+
+    }
+
+    private boolean displayInfo(ArrayList<String> tags, ArrayList<String> selectedLangs) {
 
         if (!tags.isEmpty() && !selectedLangs.isEmpty()) {
 
@@ -74,8 +87,8 @@ public class SoftwareEvolution_GUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        this.tags = description();
-        this.selectedLangs = languages();
+        assignTags();
+        assignLanguages();
 
         boolean displayInfo = displayInfo(this.tags, this.selectedLangs);
     }
