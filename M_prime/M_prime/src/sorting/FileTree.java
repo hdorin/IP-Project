@@ -20,7 +20,7 @@ import java.util.Vector;
  */
 public class FileTree extends JPanel {
     /** Construct a FileTree */
-    FileTree(File dir) throws IllegalArgumentException{
+    FileTree(File dir) {
         setLayout(new BorderLayout());
 
         // Make a tree list with all the nodes, and make it a JTree
@@ -38,16 +38,18 @@ public class FileTree extends JPanel {
                 anotherOne = anotherOne.replace(']', '\\');
                 System.out.println(tree.getLastSelectedPathComponent().toString());
                 System.out.println(anotherOne);
-
+                if(anotherOne.charAt(0) == '['){
+                    anotherOne = anotherOne.substring(1,anotherOne.length());
+                }
                 File file = new File(anotherOne.trim());
 
                 try {
-                    if (file.toString().endsWith(".pdf"))
-                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-                    else {
+//                    if (file.toString().endsWith(".pdf"))
+//                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+//                    else {
                         Desktop desktop = Desktop.getDesktop();
                         desktop.open(file);
-                    }
+//                    }
                     //Desktop.getDesktop().open(f);
                 } catch (IOException e1) {
                     System.out.println("");
