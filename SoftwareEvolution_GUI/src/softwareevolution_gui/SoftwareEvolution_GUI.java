@@ -35,16 +35,16 @@ public class SoftwareEvolution_GUI implements ActionListener {
 
     }
 
-    private boolean isEmptyStringArray(String[] array) {
-        for (String array1 : array) {
-            if (array1 != null) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    private void assignLanguages() {
+    public ArrayList<String> getSelectedLangs() {
+		return selectedLangs;
+	}
+
+	public ArrayList<String> getTags() {
+		return tags;
+	}
+
+	private void assignLanguages() {
         
         selectedLangs.clear();
 
